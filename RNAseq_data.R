@@ -1,11 +1,8 @@
-# Instalar y cargar el paquete jsonlite
-#install.packages("jsonlite")
-
 # Cargar el paquete jsonlite
 library(jsonlite) #Para utilizar el comando fromJSON
 
 # Leer el archivo como texto
-path <- "RNAseq/Data/Klepikova eFP (RNA-Seq data)-AT1G04880-AtFM5.txt" #Dirección del archivo
+path <- "RNAseq/Data/Klepikova eFP (RNA-Seq data)-AT1G04880-AtFM5.txt" #Dirección del archivo con los datos absolutos
 file_content <- readLines(path, encoding = "UTF-8") #Leer el archivo txt línea por línea
 
 # Encontrar la línea que contiene la data JSON "\\[" y unirla en un solo texto sin espacios
@@ -16,14 +13,13 @@ data <- fromJSON(json_text)
 
 # Mostrar los primeros registros para verificar
 head(data)
-nrow(data)
 
 # Crear dos vectores con los nombres de los estadios y sus respectivos códigos de medición
 fase <- c("F1", "F2", "F3", "F4", "F5", "F6_8", "F9_11", "F12_14", "F15_18", "F19_more")
 name <-  c("SRR3581693","SRR3581694", #Estos códigos pertenecen a la primera réplica
            "SRR3581695","SRR3581696",
            "SRR3581697","SRR3581698",
-           "SRR3581699","SRR3581700",
+           "SRR3581699","SRR3581700", 
            "SRR3581701","SRR3581702")
 
 #Generar un dataframe con las fases y códigos de la primera réplica
@@ -81,17 +77,17 @@ RNAdata
 RNAdata <- RNAdata[, c(1,4)]
 RNAdata
 
-gene_name <- "AtUBC22" ###################################################### nuevo nombre
+gene_name <- "AtFM5" ###################################################### nuevo nombre
 gene <- c(rep(gene_name, 10))
 gene
 
-# install.packages("tibble")
+# Instalar paquetería tibble
 library(tibble)
-RNAdata <- add_column(RNAdata, gene, .after = "fase") 
+RNAdata <- add_column(RNAdata, gene, .after = "fase")  #añadir al columna name. Incopora el nombre del gen para cada fila.
 RNAdata
 
-file_name <- "../Data/UBC22_RNAdata" ####################################### nuevo nombre de archivo
-write.table(x = RNAdata, file = file_name, sep = ',',col.names = TRUE, quote = FALSE, row.names = FALSE)
+file_name <- "../Data/FM5_RNAdata" ####################################### nombrar el archivo recuperado.
+write.table(x = RNAdata, file = file_name, sep = ',',col.names = TRUE, quote = FALSE, row.names = FALSE) # guardar el archivo nombrado.
 
 
 

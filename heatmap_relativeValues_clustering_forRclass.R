@@ -35,7 +35,7 @@ ASK1RNAdata <- RelativeMaths(ASK1RNAdata)
 
 # Combinar los datos de los 10 genes en una sola tabla
 data_combinada <- rbind(DMC1RNAdata, SPO11_1RNAdata, DUETRNAdata, FSTRNAdata, UBC22RNAdata, FM5RNAdata, FM13RNAdata, FM12RNAdata, ARP6RNAdata, ASK1RNAdata)
-data_combinada # Se observaon 100 filas (10 genes x 10 estadios)
+data_combinada # Se observaron 100 filas (10 genes x 10 estadios)
 
 # Importar paqueterías
 install.packages("ggplot2")
@@ -111,21 +111,6 @@ wilcox.test(meiotic_group(FM13RNAdata), mu = mediana_meiotica_DMC1, alternative 
 wilcox.test(meiotic_group(ASK1RNAdata), mu = mediana_meiotica_DMC1, alternative = "two.sided")
 wilcox.test(meiotic_group(ARP6RNAdata), mu = mediana_meiotica_DMC1, alternative = "two.sided")
 
-#  A nivel del ARN, para un gen meiótico estricto, podríamos establecer un 35% de expresión permisible en los estadios post-meióticos.  
-# ¿Se tendrán genes meióticos estrictos en el grupo de genes meióticos?
-# Wilcoxon de una muestra
-# Ho: la mediana de expresio n post-meiótica relativa del gen es igual a 0.35
-# Ha: la mediana de expresio n post-meiótica relativa del gen es menor que 0.35
-wilcox.test(postmeiotic_group(DMC1RNAdata), mu = 0.35, alternative = "less")
-wilcox.test(postmeiotic_group(FM12RNAdata), mu = 0.35, alternative = "less")
-wilcox.test(postmeiotic_group(DUETRNAdata), mu = 0.35, alternative = "less")
-wilcox.test(postmeiotic_group(FM5RNAdata), mu = 0.35, alternative = "less")
-wilcox.test(postmeiotic_group(SPO11_1RNAdata), mu = 0.35, alternative = "less")
-wilcox.test(postmeiotic_group(UBC22RNAdata), mu = 0.35, alternative = "less")
-wilcox.test(postmeiotic_group(FSTRNAdata), mu = 0.35, alternative = "less")
-wilcox.test(postmeiotic_group(FM13RNAdata), mu = 0.35, alternative = "less")
-wilcox.test(postmeiotic_group(ASK1RNAdata), mu = 0.35, alternative = "less")
-wilcox.test(postmeiotic_group(ARP6RNAdata), mu = 0.35, alternative = "less")
 
 
 
